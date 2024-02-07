@@ -1,9 +1,13 @@
 const leia = require('prompt-sync')();
 
+function calcular(peso, altura){
+    return (peso / (altura * altura)).toFixed(2);
+}
+
 let peso = leia("Digite seu peso: ");
 let altura = leia("Digite sua altura: ");
 
-let imc = (peso / (altura * altura)).toFixed(2);
+let imc = calcular(peso, altura);
 console.log("Seu imc é " + imc);
 
 if(imc < 18.49){
