@@ -1,25 +1,35 @@
-const leia = require('prompt-sync')();
+const prompt = require('prompt-sync')();
 
-function calcular(peso, altura){
-    return (peso / (altura * altura)).toFixed(2);
+function getUserInfo(){
+   let peso = prompt("Digite seu peso: ")
+   let altura = prompt("Digite sua altura: ")
+
+   return{
+        pesoUsuario: peso,
+        alturaUsuario: altura
+   }
 }
 
-let peso = leia("Digite seu peso: ");
-let altura = leia("Digite sua altura: ");
-
-let imc = calcular(peso, altura);
-console.log("Seu imc é " + imc);
-
-if(imc < 18.49){
-    console.log("Você está a baixo do peso")
-} else if (imc > 18.5 && imc < 24.9){
-    console.log("Seu peso está normal")
-} else if (imc > 25 && imc < 29.9){
-    console.log("Você está a cima do peso")
-} else if (imc > 30 && imc < 34.9){
-    console.log("Você está em obesidade grau um")
-} else if (imc > 35 && imc < 39.9){
-    console.log("Você está em obesidade grau dois")
-} else {
-    console.log("Você está em obesidade grau três")
+function calcImc(pesoInformado=0,alturaInformada=0){
+    return pesoInformado/alturaInformada**2
 }
+
+function main(){
+    let userData = getUserInfo();
+    let peso = userData.pesoUsuario
+    let altura = userData.alturaUsuario
+    let resultado = calcImc(peso,altura)
+
+    if (resultado<18){
+    console.log(`Seu IMC é ${resultado}, e você está abaixo do peso.`)}
+
+    else if (resultado>18 && resultado<23.9){
+    console.log(`Seu IMC é ${resultado}, e seu peso está normal.`)}
+
+    else{
+        console.log(`Seu IMC é ${resultado}, e você está acima do peso.`)
+    }
+}
+main()
+
+//altura informa com .//
